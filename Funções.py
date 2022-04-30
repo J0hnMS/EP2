@@ -24,3 +24,14 @@ def adiciona_em_ordem(pais,distancia,lista):
             lista.insert(i,pais_formatado)
             i = len(lista)
     return lista
+
+#verifica se pais esta em lista de paises
+def esta_na_lista(pais,lista):
+    i = 0
+    while i < len(lista):
+        pais_da_lista = lista[i]
+        if pais_da_lista[0] == pais:
+            return True
+        else:
+            i += 1
+    return False
