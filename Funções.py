@@ -1,5 +1,6 @@
 #bibliotecas
 import random
+import math
 
 #sorteia um pais da lista de paises
 def sorteia_pais(dicionario):
@@ -35,3 +36,14 @@ def esta_na_lista(pais,lista):
         else:
             i += 1
     return False
+
+def haversine(raio,o1,l1,o2,l2):
+
+    sin_o = math.sin(((o2 - o1)/2)*(math.pi/180))**2
+    cos_o1 = math.cos(o1*(math.pi/180))
+    cos_o2 = math.cos(o2*(math.pi/180))
+    sin_l = math.sin(((l2 - l1)/2)*(math.pi/180))**2
+
+    distancia = 2*raio * math.asin((sin_o+cos_o1*cos_o2*sin_l)**0.5)
+
+    return distancia
