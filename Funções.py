@@ -4,8 +4,8 @@ import math
 
 #sorteia um pais da lista de paises
 def sorteia_pais(dicionario):
-    pais = random.choice(list(dicionario.keys()))
-    return pais
+    return random.choice(list(dicionario.keys()))
+    
 
 #ordena lista de paises
 def adiciona_em_ordem(pais,distancia,lista):
