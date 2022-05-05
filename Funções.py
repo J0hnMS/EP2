@@ -48,18 +48,20 @@ def haversine(raio,o1,l1,o2,l2):
 
     return distancia
 
-#Sorteia Letra com Restrições
-import random 
+#Sorteia Letra fora de uma lista de Restrições
+import random
 import string
 
-def sorteia_letra (palavra, lista_restrita):
+def sorteia_letra(palavra,lista_restrita):
     palavra = palavra.lower()
-    letras = list(palavra)
-    for letra in letras:
-        if letra in lista_restrita:
-            letras.remove(letra)
-    for letra in letras:
-        if letra in string.punctuation:
-            letras.remove(letra)
-    return random.choice(letras) 
-
+    palavra = palavra.replace(' ','')
+    for caracter in string.punctuation:
+        if caracter in palavra:
+            palavra = palavra.replace(caracter,'')
+    for restricao in lista_restrita:
+        palavra = palavra.replace(restricao,'')
+    if palavra == '':
+        return ''
+    else:
+        letra = random.choice(palavra)
+        return letra
