@@ -1,6 +1,7 @@
 #bibliotecas
 import random
 import math
+import string
 
 #sorteia um pais da lista de paises
 def sorteia_pais(dicionario):
@@ -37,6 +38,7 @@ def esta_na_lista(pais,lista):
             i += 1
     return False
 
+#calcula distancia de haversine
 def haversine(raio,o1,l1,o2,l2):
 
     sin_o = math.sin(((o2 - o1)/2)*(math.pi/180))**2
@@ -49,19 +51,19 @@ def haversine(raio,o1,l1,o2,l2):
     return distancia
 
 #Sorteia Letra fora de uma lista de Restrições
-import random
-import string
-
 def sorteia_letra(palavra,lista_restrita):
+    #removendo caracteres indesejados
     palavra = palavra.lower()
     palavra = palavra.replace(' ','')
     for caracter in string.punctuation:
         if caracter in palavra:
-            palavra = palavra.replace(caracter,'')
+            palavra = palavra.replace(caracter,'') 
+    #removendo caracteres restritos
     for restricao in lista_restrita:
         palavra = palavra.replace(restricao,'')
+    #palavra vazia
     if palavra == '':
         return ''
+    #sorteia caractere
     else:
-        letra = random.choice(palavra)
-        return letra
+        return random.choice(palavra)
