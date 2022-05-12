@@ -6,8 +6,11 @@ import string
 #normalizando base de paises
 def normaliza(dic):
   novo_dic = {}
+#passa pelos items do dicionario
   for continente, paises in dic.items():
+#passa pelos items da lista de paises 
     for pais, dados in paises.items():
+#define dados quando se trata de continente
       dados['continente'] = continente
       novo_dic[pais] = dados
   return novo_dic
