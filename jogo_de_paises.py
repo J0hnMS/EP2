@@ -53,8 +53,7 @@ Um país foi sorteado, tente descobrir!
     #chance de palpite caso tenha tentativas
     while tentativas>0:
         #parametros locais
-        cor_da_band = False
-        letra_cap = False
+
         
         # imprime tentatives e pergunta palpite
         print ('Você tem {} tentativa(s)'.format(tentativas))
@@ -93,10 +92,8 @@ Um país foi sorteado, tente descobrir!
 -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-''')
             if tentativas > 4:
                 print('1. Cor da Bandeira   - custa 4 tentativas')
-                cor_da_band = True
             if tentativas > 3:
                 print('2. Letra da capital  - custa 3 tentativas')
-                letra_cap = True
             if tentativas > 6 and ar:
                 print('3. Área              - custa 6 tentativas')
             if tentativas > 5 and pop:
@@ -115,13 +112,13 @@ Um país foi sorteado, tente descobrir!
                 dica_escolhida = int(input('Escolha sua opção [0|1|2|3|4|5]:'))
             
             #faz ação da dica:
-            if dica_escolhida == 1 and cor_da_band and tentativas > 4:
+            if dica_escolhida == 1 and tentativas > 4:
                 custo = 4
                 
                 tentativas -= custo
 
                 print (1)
-            if dica_escolhida == 2 and letra_cap and tentativas > 3:
+            if dica_escolhida == 2 and tentativas > 3:
                 custo = 3
                 letra_sorteada = (sorteia_letra(capital,letra_da_capital))
                 letra_da_capital.append(letra_sorteada)
