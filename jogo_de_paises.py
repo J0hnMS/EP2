@@ -112,7 +112,7 @@ Um país foi sorteado, tente descobrir!
                 dica_escolhida = int(input('Escolha sua opção [0|1|2|3|4|5]:'))
       
             #faz ação da dica:
-            if dica_escolhida == 1 and cor_da_band:
+            if dica_escolhida == 1 and tentativas > 4:
                 custo = 4
                 cor = []
                 pega_bandeira = (DADOS('bandeira'))
