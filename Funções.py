@@ -3,6 +3,16 @@ import random
 import math
 import string
 
+#normalizando base de paises
+def normaliza(dic):
+  novo_dic = {}
+  for continente, paises in dic.items():
+    for pais, dados in paises.items():
+      dados['continente'] = continente
+      novo_dic[pais] = dados
+  return novo_dic
+
+
 #sorteia um pais da lista de paises
 def sorteia_pais(dicionario):
     return random.choice(list(dicionario.keys()))
