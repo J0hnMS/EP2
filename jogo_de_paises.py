@@ -14,8 +14,6 @@ RAIO = 6371
 quer_jogar = True
 while quer_jogar:
     tentativas = 20
-    if tentativas > 0:
-        tem_tentativas = True
     distancias = []
     pais_sorteado = sorteia_pais(DADOS)
     print (pais_sorteado)
@@ -47,7 +45,8 @@ Um país foi sorteado, tente descobrir!
     cor_da_bandeira = []
     letra_da_capital = []
     DICAS = {}
-    while tem_tentativas:
+    
+    while tentativas>0:
         cor_da_band = False
         letra_cap = False
 
