@@ -117,7 +117,9 @@ Um país foi sorteado, tente descobrir!
                 cor = []
                 pega_bandeira = (dados_pais_sorteado['bandeira'])
                 for cores, valor  in pega_bandeira.items():
-                    if valor > cor[1]:
+                    if len(cor) == 0:
+                        cor = [cores, valor]
+                    elif valor > cor[1]:
                         cor = [cores, valor]
                 cor_da_bandeira.append(cor[0])
                 DICAS['cor_da_bandeira'] = cor_da_bandeira
