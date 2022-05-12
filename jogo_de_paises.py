@@ -53,7 +53,7 @@ Um país foi sorteado, tente descobrir!
         print ('Você tem {} tentativa(s)'.format(tentativas))
         pais_palpite = input('Qual é o seu palpite?')
         
-         if pais_palpite in DADOS:
+        if pais_palpite in DADOS:
             dados_pais_palpite = DADOS[pais_palpite]
             geo_pais_palpite = dados_pais_palpite['geo']
             coordenadas_pais_palpite = [geo_pais_palpite['latitude'],geo_pais_palpite['longitude']]
