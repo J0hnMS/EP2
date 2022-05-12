@@ -115,7 +115,7 @@ Um país foi sorteado, tente descobrir!
             if dica_escolhida == 1 and tentativas > 4:
                 custo = 4
                 cor = []
-                pega_bandeira = (DADOS('bandeira'))
+                pega_bandeira = (DADOS['bandeira'])
                 for cores, valor  in pega_bandeira.items():
                     if valor > cor[1]:
                         cor = [cores, valor]
