@@ -53,7 +53,14 @@ Um país foi sorteado, tente descobrir!
         print ('Você tem {} tentativa(s)'.format(tentativas))
         pais_palpite = input('Qual é o seu palpite?')
         
-        #palpite eh pais 
+         if pais_palpite in DADOS:
+            dados_pais_palpite = DADOS[pais_palpite]
+            geo_pais_palpite = dados_pais_palpite['geo']
+            coordenadas_pais_palpite = [geo_pais_palpite['latitude'],geo_pais_palpite['longitude']]
+            distancia= haversine(RAIO,coordenadas_pais_sorteado[0],coordenadas_pais_sorteado[1],coordenadas_pais_palpite[0],coordenadas_pais_palpite[1])
+            distancias = adiciona_em_ordem(pais_palpite,distancia,distancias)
+            tentativas -= 1 
+            
         elif pais_palpite == 'dica':
             print('''
             Mercado de Dicas
@@ -113,6 +120,21 @@ Um país foi sorteado, tente descobrir!
 
         else:
             print('país desconhecido')
-        # distancias,dicas e tentativas
+            
+        print('Distâncias:')
+        for dist in distancias:
+            print('{:.0f} km -> {}'.format(dist[1],dist[0]))
+        print('Dicas:')
+        for dica,value in DICAS.items():
+            if dica == 'cor_da_bandeira':
+                print('   - Cores da bandeira: {}'.format(value))
+            if dica == 'letra_da_capital':
+                print('   - Letras da capital: {}'.format(value))
+            if dica == 'area':
+                print('   - Área:{} km2'.format(value))
+            if dica == 'populacao':
+                print('   - População: {} habitantes'.format(value))
+            if dica == 'continente':
+                print('   - Continente: {}'.format(value))
             
     quer_jogar = False
