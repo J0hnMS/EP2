@@ -110,14 +110,18 @@ Um país foi sorteado, tente descobrir!
             while dica_escolhida >5  or dica_escolhida <  0:
                 print ('Escolha uma opção valida!')
                 dica_escolhida = int(input('Escolha sua opção [0|1|2|3|4|5]:'))
-            
+      
             #faz ação da dica:
-            if dica_escolhida == 1 and tentativas > 4:
+            if dica_escolhida == 1 and cor_da_band:
                 custo = 4
-                
+                cor = []
+                pega_bandeira = (DADOS('bandeira'))
+                for cores, valor  in pega_bandeira.items():
+                    if valor > cor[1]:
+                        cor = [cores, valor]
+                cor_da_bandeira.append(cor[0])
+                DICAS['cor_da_bandeira'] = cor_da_bandeira
                 tentativas -= custo
-
-                print (1)
             if dica_escolhida == 2 and tentativas > 3:
                 custo = 3
                 letra_sorteada = (sorteia_letra(capital,letra_da_capital))
