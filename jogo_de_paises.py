@@ -36,12 +36,16 @@ while quer_jogar:
     tentativas = 20
     distancias = []
     cor = []
+    cor_band = True
+    ltr_cap = True
     ar = True
     pop = True
     cont = True
     foi_dicas = False
     cor_da_bandeira = []
     letra_da_capital = []
+    opcao_de_dicas = {0:'0',1:'1',2:'2',3:'3',4:'4',5:'5'}
+
     DICAS = {}
     pais_sorteado = sorteia_pais(DADOS)
     #print (pais_sorteado)
@@ -55,7 +59,23 @@ while quer_jogar:
 
     #chance de palpite caso tenha tentativas
     while tentativas>0:
+        if tentativas <= 4 and cor_band:
+            cor_band = False
+            opcao_de_dicas[1] = ''
+        if tentativas <= 3 and ltr_cap:
+            ltr_cap = False
+            opcao_de_dicas[2] = ''
+        if tentativas <= 6 and ar:
+            ar = False
+            opcao_de_dicas[3] = ''
+        if tentativas <= 5 and pop:
+            pop = False
+            opcao_de_dicas[4] = ''
+        if tentativas <= 7 and cont:
+            cont = False
+            opcao_de_dicas[4] = ''
 
+        
         # imprime tentatives e pergunta palpite
         print ('Você tem {} tentativa(s)'.format(tentativas))
         pais_palpite = input('Qual é o seu palpite?')
@@ -67,13 +87,14 @@ while quer_jogar:
             print('Distâncias:')
             for dist in distancias:
                 print('{:.0f} km -> {}'.format(dist[1],dist[0]))
-            
             print('Dicas:')
             for dica,value in DICAS.items():
                 if dica == 'cor_da_bandeira':
-                    print('   - Cores da bandeira: {}'.format(value))
+                    cor_da_bandeira_exibir = ', '.join(value)
+                    print('   - Cores da bandeira: {}'.format(cor_da_bandeira_exibir))
                 if dica == 'letra_da_capital':
-                    print('   - Letras da capital: {}'.format(value))
+                    letras_da_capital_exibir = ', '.join(value)
+                    print('   - Letras da capital: {}'.format(letras_da_capital_exibir))
                 if dica == 'area':
                     print('   - Área:{} km2'.format(value))
                 if dica == 'populacao':
@@ -91,13 +112,14 @@ while quer_jogar:
             print('Distâncias:')
             for dist in distancias:
                 print('{:.0f} km -> {}'.format(dist[1],dist[0]))
-            if foi_dicas:
-                print('Dicas:')
+            print('Dicas:')
             for dica,value in DICAS.items():
                 if dica == 'cor_da_bandeira':
-                    print('   - Cores da bandeira: {}'.format(value))
+                    cor_da_bandeira_exibir = ', '.join(value)
+                    print('   - Cores da bandeira: {}'.format(cor_da_bandeira_exibir))
                 if dica == 'letra_da_capital':
-                    print('   - Letras da capital: {}'.format(value))
+                    letras_da_capital_exibir = ', '.join(value)
+                    print('   - Letras da capital: {}'.format(letras_da_capital_exibir))
                 if dica == 'area':
                     print('   - Área:{} km2'.format(value))
                 if dica == 'populacao':
@@ -111,30 +133,38 @@ while quer_jogar:
             print('''
             Mercado de Dicas
 -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-''')
-            if tentativas > 4:
+            if cor_band:
                 print('1. Cor da Bandeira   - custa 4 tentativas')
-            if tentativas > 3:
+            if ltr_cap:
                 print('2. Letra da capital  - custa 3 tentativas')
-            if tentativas > 6 and ar:
+            if  ar:
                 print('3. Área              - custa 6 tentativas')
-            if tentativas > 5 and pop:
+            if  pop:
                 print('4. População         - custa 5 tentativas')
-            if tentativas > 7 and cont:
+            if  cont:
                 print('5. Continente        - custa 7 tentativas')
             print('''0. Sem dica                       
 -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 ''')
             #pede para escolher a dica
-            dica_escolhida = input('Escolha sua opção [0|1|2|3|4|5]:')
-            if dica_escolhida == '0' or dica_escolhida == '1' or dica_escolhida == '2' or dica_escolhida == '3' or dica_escolhida == '4' or dica_escolhida == '5':
+            
+            
+            opc_str = (''.join(opcao_de_dicas.values()))
+            x = list(opc_str)
+            dica_escolhida = input('Escolha sua opção [{}]:'.format(('|'.join(x))))
+            if dica_escolhida == '':
+                dica_escolhida == 'filtro'
+            if dica_escolhida in opcao_de_dicas.values():
                 dica_escolhida = int(dica_escolhida)
             while dica_escolhida != 5 and dica_escolhida != 4 and dica_escolhida != 3 and dica_escolhida != 2 and dica_escolhida != 1 and dica_escolhida != 0:
                 print ('Escolha uma opção valida!')
-                dica_escolhida = input('Escolha sua opção [0|1|2|3|4|5]:')
-                if dica_escolhida == '0' or dica_escolhida == '1' or dica_escolhida == '2' or dica_escolhida == '3' or dica_escolhida == '4' or dica_escolhida == '5':
+                dica_escolhida = input('Escolha sua opção [{}]:'.format(('|'.join(x))))
+                if dica_escolhida == '':
+                    dica_escolhida == 'filtro'
+                if dica_escolhida in opcao_de_dicas.values():
                     dica_escolhida = int(dica_escolhida)
             #faz ação da dica:
-            if dica_escolhida == 1 and tentativas > 4:
+            if dica_escolhida == 1 and cor_band:
                 custo = 4
                 valor_mais_alto = 0
                 cor_i = ''
@@ -147,41 +177,53 @@ while quer_jogar:
                     cor.append(cor_i) 
                     DICAS['cor_da_bandeira'] = cor
                     tentativas -= custo
+                if cor_i == 'outras':
+                    cor_band = False
+                    opcao_de_dicas[1] = ''
+
                 foi_dicas = True
-            if dica_escolhida == 2 and tentativas > 3:
+            if dica_escolhida == 2 and ltr_cap:
                 custo = 3
                 letra_sorteada = (sorteia_letra(capital,letra_da_capital))
                 letra_da_capital.append(letra_sorteada)
                 DICAS['letra_da_capital'] = letra_da_capital
                 tentativas-=custo
+                if len(capital) == len(letra_da_capital):
+                    opcao_de_dicas[2] = ''
+                    ltr_cap = False
                 foi_dicas = True
-            if dica_escolhida == 3 and ar and tentativas > 6:
+            if dica_escolhida == 3 and ar:
                 custo = 6
                 DICAS['area'] = dados_pais_sorteado['area']
                 tentativas -= custo
                 ar = False
                 foi_dicas = True
-            if dica_escolhida == 4 and pop and tentativas > 5:
+                opcao_de_dicas[3] = ''
+            if dica_escolhida == 4 and pop:
                 custo = 5
                 tentativas -= custo
                 DICAS['populacao'] = dados_pais_sorteado['populacao']
                 pop = False
                 foi_dicas = True
-            if dica_escolhida == 5 and cont and tentativas > 7:
+                opcao_de_dicas[4] = ''
+            if dica_escolhida == 5 and cont:
                 custo = 7
                 DICAS['continente'] = dados_pais_sorteado['continente']
                 tentativas -= custo
                 cont = False
                 foi_dicas = True
+                opcao_de_dicas[5] = ''
             print('Distâncias:')
             for dist in distancias:
                 print('{:.0f} km -> {}'.format(dist[1],dist[0]))
             print('Dicas:')
             for dica,value in DICAS.items():
                 if dica == 'cor_da_bandeira':
-                    print('   - Cores da bandeira: {}'.format(value))
+                    cor_da_bandeira_exibir = ', '.join(value)
+                    print('   - Cores da bandeira: {}'.format(cor_da_bandeira_exibir))
                 if dica == 'letra_da_capital':
-                    print('   - Letras da capital: {}'.format(value))
+                    letras_da_capital_exibir = ', '.join(value)
+                    print('   - Letras da capital: {}'.format(letras_da_capital_exibir))
                 if dica == 'area':
                     print('   - Área:{} km2'.format(value))
                 if dica == 'populacao':
