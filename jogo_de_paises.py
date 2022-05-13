@@ -77,17 +77,20 @@ while quer_jogar:
 
         
         # imprime tentatives e pergunta palpite
-        print ('Você tem {} tentativa(s)'.format(tentativas))
+        print ('''
+Você tem {} tentativa(s)'''.format(tentativas))
         pais_palpite = input('Qual é o seu palpite?')
         if pais_palpite == pais_sorteado:
             print('Parabéns Você Acertou o País!!!')
             tentativas = 0
         #palpite é um pais valido
         elif pais_palpite == 'inventario':
-            print('Distâncias:')
+            print('''
+Distâncias:''')
             for dist in distancias:
                 print('{:.0f} km -> {}'.format(dist[1],dist[0]))
-            print('Dicas:')
+            print('''
+Dicas:''')
             for dica,value in DICAS.items():
                 if dica == 'cor_da_bandeira':
                     cor_da_bandeira_exibir = ', '.join(value)
@@ -109,10 +112,13 @@ while quer_jogar:
             distancia= haversine(RAIO,coordenadas_pais_sorteado[0],coordenadas_pais_sorteado[1],coordenadas_pais_palpite[0],coordenadas_pais_palpite[1])
             distancias = adiciona_em_ordem(pais_palpite,distancia,distancias)
             tentativas -= 1 
-            print('Distâncias:')
+            print("""
+Distâncias:""")
             for dist in distancias:
                 print('{:.0f} km -> {}'.format(dist[1],dist[0]))
-            print('Dicas:')
+            if foi_dicas:
+                print('''
+Dicas:''')
             for dica,value in DICAS.items():
                 if dica == 'cor_da_bandeira':
                     cor_da_bandeira_exibir = ', '.join(value)
@@ -213,10 +219,13 @@ while quer_jogar:
                 cont = False
                 foi_dicas = True
                 opcao_de_dicas[5] = ''
-            print('Distâncias:')
+            print('''
+Distâncias:''')
             for dist in distancias:
                 print('{:.0f} km -> {}'.format(dist[1],dist[0]))
-            print('Dicas:')
+            if foi_dicas:
+                print('''
+Dicas:''')
             for dica,value in DICAS.items():
                 if dica == 'cor_da_bandeira':
                     cor_da_bandeira_exibir = ', '.join(value)
