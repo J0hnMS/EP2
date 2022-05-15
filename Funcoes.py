@@ -80,3 +80,15 @@ def sorteia_letra(palavra,lista_restrita):
     #sorteia caractere
     else:
         return random.choice(palavra)
+ #define distancias e suas cores     
+ def verifica_cor(dist):
+    if dist[1] <= 1000:
+        print('\33[96m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #ciano
+    if dist[1] > 1000 and dist[1] <= 2000:
+        print('\33[93m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #amarelo
+    if dist[1] > 2000 and dist[1] <= 5000:
+        print('\33[91m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #vermelho
+    if dist[1] > 5000 and dist[1] <= 10000:
+        print('\33[95m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) # roxo
+    if dist[1] > 10000:
+        print('\33[90m{:.0f} km -> {}\33[0m'.format(dist[1],dist[0])) # preto)
