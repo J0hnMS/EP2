@@ -8,6 +8,7 @@ from  Funções import *
 
 
 
+
 DADOS = carrega_dados()
 RAIO = 6371
 
@@ -33,6 +34,7 @@ while quer_jogar:
     #define parametros
     tentativas = 20
     distancias = []
+    paises_palpitados = []
     cor = []
     cor_band = True
     ltr_cap = True
@@ -78,10 +80,11 @@ while quer_jogar:
         print ('''
 Você tem {} tentativa(s)'''.format('\33[96m {} \33[0m'.format(tentativas)))
         pais_palpite = input('Qual é o seu palpite?')
+        pais_palpite = pais_palpite.lower()
         if pais_palpite == pais_sorteado:
             print('Parabéns Você Acertou o País!!!')
             tentativas = 0
-        #palpite é um pais valido
+        #palpite é inventario
         elif pais_palpite == 'inventario':
             print('''
 Distâncias:''')
@@ -102,35 +105,42 @@ Dicas:''')
                     print('   - População: {} habitantes'.format(value))
                 if dica == 'continente':
                     print('   - Continente: {}'.format(value))
+        
+        #palapite é um pais que nao foi palpitado antes
         elif pais_palpite in DADOS:
-            #calcula distancia do pais sorteado
-            dados_pais_palpite = DADOS[pais_palpite]
-            geo_pais_palpite = dados_pais_palpite['geo']
-            coordenadas_pais_palpite = [geo_pais_palpite['latitude'],geo_pais_palpite['longitude']]
-            distancia= haversine(RAIO,coordenadas_pais_sorteado[0],coordenadas_pais_sorteado[1],coordenadas_pais_palpite[0],coordenadas_pais_palpite[1])
-            distancias = adiciona_em_ordem(pais_palpite,distancia,distancias)
-            tentativas -= 1 
-            print("""
+            if pais_palpite not in paises_palpitados:
+                #calcula distancia do pais sorteado
+                dados_pais_palpite = DADOS[pais_palpite]
+                geo_pais_palpite = dados_pais_palpite['geo']
+                coordenadas_pais_palpite = [geo_pais_palpite['latitude'],geo_pais_palpite['longitude']]
+                distancia= haversine(RAIO,coordenadas_pais_sorteado[0],coordenadas_pais_sorteado[1],coordenadas_pais_palpite[0],coordenadas_pais_palpite[1])
+                distancias = adiciona_em_ordem(pais_palpite,distancia,distancias)
+                paises_palpitados.append(pais_palpite)
+                tentativas -= 1 
+                print("""
 Distâncias:""")
-            for dist in distancias:
-                verifica_cor(dist)
-            if foi_dicas:
-                print('''
+                for dist in distancias:
+                    verifica_cor(dist)
+                if foi_dicas:
+                    print('''
 Dicas:''')
-            for dica,value in DICAS.items():
-                if dica == 'cor_da_bandeira':
-                    cor_da_bandeira_exibir = ', '.join(value)
-                    print('   - Cores da bandeira: {}'.format(cor_da_bandeira_exibir))
-                if dica == 'letra_da_capital':
-                    letras_da_capital_exibir = ', '.join(value)
-                    print('   - Letras da capital: {}'.format(letras_da_capital_exibir))
-                if dica == 'area':
-                    print('   - Área:{} km2'.format(value))
-                if dica == 'populacao':
-                    print('   - População: {} habitantes'.format(value))
-                if dica == 'continente':
-                    print('   - Continente: {}'.format(value))
-                    
+                for dica,value in DICAS.items():
+                    if dica == 'cor_da_bandeira':
+                        cor_da_bandeira_exibir = ', '.join(value)
+                        print('   - Cores da bandeira: {}'.format(cor_da_bandeira_exibir))
+                    if dica == 'letra_da_capital':
+                        letras_da_capital_exibir = ', '.join(value)
+                        print('   - Letras da capital: {}'.format(letras_da_capital_exibir))
+                    if dica == 'area':
+                        print('   - Área:{} km2'.format(value))
+                    if dica == 'populacao':
+                        print('   - População: {} habitantes'.format(value))
+                    if dica == 'continente':
+                        print('   - Continente: {}'.format(value))
+            else:
+                print("""
+Este país ja foi palpitado""")
+
         #palpite foi pedir dica
         elif pais_palpite == 'dica':
             #print mercado de dicas, caso nao tenha tentativas suficiente dica nao é imprimida
