@@ -88,7 +88,7 @@ Você tem {} tentativa(s)'''.format(tentativas))
             print('''
 Distâncias:''')
             for dist in distancias:
-                 if dist[1] <= 1000:
+                if dist[1] <= 1000:
                     print('\33[96m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #ciano
                 if dist[1] > 1000 and dist[1] <= 2000:
                     print('\33[93m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #amarelo
