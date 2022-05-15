@@ -88,7 +88,16 @@ Você tem {} tentativa(s)'''.format(tentativas))
             print('''
 Distâncias:''')
             for dist in distancias:
-                print('{:.0f} km -> {}'.format(dist[1],dist[0]))
+                 if dist[1] <= 1000:
+                    print('\33[96m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #ciano
+                if dist[1] > 1000 and dist[1] <= 2000:
+                    print('\33[93m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #amarelo
+                if dist[1] > 2000 and dist[1] <= 5000:
+                    print('\33[91m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #vermelho
+                if dist[1] > 5000 and dist[1] <= 10000:
+                    print('\33[95m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) # roxo
+                if dist[1] > 10000:
+                    print('{:.0f} km -> {}'.format(dist[1],dist[0])) # preto)
             print('''
 Dicas:''')
             for dica,value in DICAS.items():
@@ -115,7 +124,16 @@ Dicas:''')
             print("""
 Distâncias:""")
             for dist in distancias:
-                print('{:.0f} km -> {}'.format(dist[1],dist[0]))
+                if dist[1] <= 1000:
+                    print('\33[96m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #ciano
+                if dist[1] > 1000 and dist[1] <= 2000:
+                    print('\33[93m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #amarelo
+                if dist[1] > 2000 and dist[1] <= 5000:
+                    print('\33[91m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #vermelho
+                if dist[1] > 5000 and dist[1] <= 10000:
+                    print('\33[95m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) # roxo
+                if dist[1] > 10000:
+                    print('{:.0f} km -> {}'.format(dist[1],dist[0])) # preto
             if foi_dicas:
                 print('''
 Dicas:''')
@@ -222,7 +240,16 @@ Dicas:''')
             print('''
 Distâncias:''')
             for dist in distancias:
-                print('{:.0f} km -> {}'.format(dist[1],dist[0]))
+                if dist[1] <= 1000:
+                    print('\33[96m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #ciano
+                if dist[1] > 1000 and dist[1] <= 2000:
+                    print('\33[93m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #amarelo
+                if dist[1] > 2000 and dist[1] <= 5000:
+                    print('\33[91m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #vermelho
+                if dist[1] > 5000 and dist[1] <= 10000:
+                    print('\33[95m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) # roxo
+                if dist[1] > 10000:
+                    print('{:.0f} km -> {}'.format(dist[1],dist[0])) # preto
             if foi_dicas:
                 print('''
 Dicas:''')
