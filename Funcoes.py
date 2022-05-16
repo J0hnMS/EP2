@@ -81,7 +81,7 @@ def sorteia_letra(palavra,lista_restrita):
     else:
         return random.choice(palavra)
  #define distancias e suas cores     
- def verifica_cor(dist):
+def verifica_cor(dist):
     if dist[1] <= 1000:
         print('\33[96m{:.0f} km -> {} \33[0m'.format(dist[1],dist[0])) #ciano
     if dist[1] > 1000 and dist[1] <= 2000:
