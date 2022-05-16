@@ -2,7 +2,6 @@
 import string
 import random
 import math
-#from dis import dis
 from Base_de_paises import carrega_dados
 from  Funções import *
 
