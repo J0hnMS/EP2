@@ -1,12 +1,6 @@
 # bibliotecas:
-import string
-import random
-import math
 from Base_de_paises import carrega_dados
 from  Funcoes import *
-import Funcoes
-
-
 
 
 DADOS = carrega_dados()
@@ -56,7 +50,6 @@ while quer_jogar:
     geo_pais_sorteado = dados_pais_sorteado['geo']
     coordenadas_pais_sorteado = [geo_pais_sorteado['latitude'],geo_pais_sorteado['longitude']]
     
-
     #chance de palpite caso tenha tentativas
     while tentativas>0:
         if tentativas <= 4 and cor_band:
@@ -75,7 +68,6 @@ while quer_jogar:
             cont = False
             opcao_de_dicas[4] = ''
 
-        
         # imprime tentatives e pergunta palpite
         print ('''
 Você tem {} tentativa(s)'''.format('\33[96m {} \33[0m'.format(tentativas)))
@@ -162,9 +154,7 @@ Este país ja foi palpitado""")
             print('''0. Sem dica                       
 -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 ''')
-            #pede para escolher a dica
-            
-            
+            #pede para escolher a dica            
             opc_str = (''.join(opcao_de_dicas.values()))
             x = list(opc_str)
             dica_escolhida = input('Escolha sua opção [{}]:'.format(('|'.join(x))))
@@ -262,6 +252,7 @@ Dicas:''')
             #palpite nao foi reconhecido
         else:
             print('país desconhecido')
+    #fim de jogo e jogar novamente
     if tentativas > 0:
         print('Você tem {} tentativas'.format(0))
     if acertou_pais == False:
