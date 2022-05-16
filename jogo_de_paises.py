@@ -83,7 +83,7 @@ Você tem {} tentativa(s)'''.format('\33[96m {} \33[0m'.format(tentativas)))
         pais_palpite = pais_palpite.lower()
         if pais_palpite == pais_sorteado:
             print("""
-\33[92mParabéns Você Acertou o País !!!\33[0m""") #ciano
+\33[92mParabéns Você Acertou o País !!!\33[0m""") #verde
             acertou_pais = True
             tentativas = 0
         #palpite é inventario
