@@ -49,7 +49,6 @@ while quer_jogar:
 
     DICAS = {}
     pais_sorteado = sorteia_pais(DADOS)
-    print (pais_sorteado)
     #informações de pais sorteado
     dados_pais_sorteado = DADOS[pais_sorteado]
     pega_bandeira = (dados_pais_sorteado['bandeira'])
@@ -83,7 +82,8 @@ Você tem {} tentativa(s)'''.format('\33[96m {} \33[0m'.format(tentativas)))
         pais_palpite = input('Qual é o seu palpite?')
         pais_palpite = pais_palpite.lower()
         if pais_palpite == pais_sorteado:
-            print('Parabéns Você Acertou o País!!!')
+            print("""
+\33[92mParabéns Você Acertou o País !!!\33[0m""") #ciano
             acertou_pais = True
             tentativas = 0
         #palpite é inventario
@@ -253,10 +253,11 @@ Dicas:''')
             #palpite é desisto 
         elif pais_palpite == 'desisto':
             quer_desistir = input('Tem certeza que deseja desistir da rodada? [S|N]')
-            if quer_desistir == 'S':
+            if quer_desistir == 'S' or quer_desistir == 's':
                 #criar lista de respostas para desisto
-                print("Que frouxo/a, o país era: {}".format(pais_sorteado))
+                print("Que pena, o país era: {}".format(pais_sorteado))
                 tentativas = 0
+                acertou_pais = True
             
             #palpite nao foi reconhecido
         else:
@@ -267,7 +268,7 @@ Dicas:''')
         print('Lamentavelmente você perdeu, o país era: {}'.format(pais_sorteado))
     quer_continuar = input("""
 Jogar Novamente?[S|N]""")
-    if quer_continuar != 'S':
+    if quer_continuar != 'S' and quer_continuar != 's':
         print("""
 Até a Próxima! :)""")
         quer_jogar = False
