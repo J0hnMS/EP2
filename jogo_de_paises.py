@@ -3,7 +3,8 @@ import string
 import random
 import math
 from Base_de_paises import carrega_dados
-from  Funções import *
+from  Funcoes import *
+import Funcoes
 
 
 
